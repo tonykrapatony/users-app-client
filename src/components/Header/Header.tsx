@@ -11,7 +11,7 @@ import ProfileDropdown from './ProfileDropdown/ProfileDropdown'
 
 
 export default function Header() {
-  const [showModal, setShowModal] = useState<BaseAudioContextoolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [renderForm, setRenderForm] = useState<string>('');
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 
