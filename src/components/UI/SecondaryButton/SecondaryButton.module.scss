@@ -1,0 +1,6 @@
+.secondaryBtn {
+  @apply flex items-center justify-center min-w-28 h-11 px-2 py-1 bg-darkBlue rounded-md border-0 outline-0;
+  span {
+    @apply text-white text-base
+  }
+}

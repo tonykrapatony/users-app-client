@@ -1,0 +1,59 @@
+.settings_page {
+  @apply flex flex-col max-w-lg gap-8 py-5;
+  h1 {
+    @apply col-span-3 text-4xl;
+  }
+  h2 {
+    @apply col-span-3 text-3xl;
+  }
+  button {
+    @apply border-0 outline-none bg-none
+  }
+  .settings_list {
+    @apply flex flex-col gap-2;
+    .settings_item {
+      @apply flex flex-col gap-1;
+      .value {
+        @apply flex flex-wrap sm:flex-nowrap;
+        .label {
+          @apply w-full text-darkBlue sm:w-auto;
+        }
+        @apply flex items-center gap-2;
+        p {
+          @apply text-2xl text-purple;
+        }
+      }
+
+      .edit_block {
+        @apply grid grid-cols-1fr-auto gap-2;
+        .actions {
+          @apply flex items-center gap-1 w-fit;
+        }
+      }
+    }
+  }
+  .avatar {
+    @apply flex flex-col gap-2;
+    img {
+      @apply rounded-full; overflow: hidden;
+    }
+    .file_input {
+      @apply flex flex-col;
+      input {
+        @apply border border-darkBlue rounded-md;
+        &::-webkit-file-upload-button {
+          @apply px-5 py-2 bg-darkBlue text-white text-sm border-0;
+        }
+        &.error {
+          @apply border-red text-red;
+          &::-webkit-file-upload-button {
+            @apply bg-red;
+          }
+        }
+      }
+      .error_msg {
+        @apply mt-1 text-red text-sm;
+      }
+    }
+  }
+}

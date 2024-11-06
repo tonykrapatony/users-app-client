@@ -1,0 +1,36 @@
+.posts_container {
+  @apply flex flex-col gap-5;
+  h2 {
+    @apply text-2xl
+  }
+  .posts_list {
+    @apply flex flex-col gap-3;
+    .post_item {
+      @apply p-3 border border-darkBlue rounded-md;
+      .post_info {
+        @apply flex flex-col gap-2 p-2;
+        h3 {
+          @apply text-lg;
+        }
+        a {
+          @apply flex items-center gap-1;
+          img {
+            @apply w-5 h-5 object-fill rounded-full overflow-hidden
+          }
+          p {
+            @apply text-sm text-purple;
+          }
+        }
+        span {
+          @apply text-sm;
+        }
+      }
+      .actions {
+        @apply flex items-center gap-1 p-2 border-t border-darkBlue;
+        .actions_item {
+          @apply cursor-pointer;
+        }
+      }
+    }
+  }
+}

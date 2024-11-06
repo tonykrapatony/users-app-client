@@ -1,0 +1,26 @@
+.profile_dropdown {
+  @apply relative;
+  .dropdown_toggle {
+    @apply rounded-full overflow-hidden border-none outline-none;
+  }
+  .dropdown_list {
+    @apply absolute top-full right-0 z-10 flex flex-col
+    min-w-fit shadow-sm shadow-gray rounded-lg bg-white overflow-hidden;
+    li {
+      @apply block px-5 py-2 whitespace-nowrap text-lg hover:bg-purple hover:text-white cursor-pointer;
+      &:hover {
+        a {
+          span {
+            @apply bg-white text-sm text-purple;
+          }
+        }
+      }
+      a {
+        @apply flex items-center gap-1;
+        span {
+          @apply flex justify-center items-center w-5 h-5 overflow-hidden rounded-full bg-purple text-sm text-white hover:text-purple;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.friends_item {
+  @apply flex gap-4 items-center;
+  a {
+    @apply flex gap-2 items-center;
+    .avatar {
+      @apply w-12 h-12 object-fill overflow-hidden rounded-full;
+    }
+    p {
+      @apply text-lg
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.friends_list {
+  h2 {
+    @apply text-2xl mb-1;
+  }
+  @apply flex flex-col gap-2;
+}

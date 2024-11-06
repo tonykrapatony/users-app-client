@@ -1,0 +1,13 @@
+.profile_page {
+  @apply flex flex-col gap-8 py-5
+  md:grid md:grid-cols-2 md:grid-rows-2-auto;
+  h1 {
+    @apply col-span-3 text-4xl;
+  }
+  .post_list {
+
+  }
+  .post_form {
+    
+  }
+}

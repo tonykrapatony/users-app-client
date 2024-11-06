@@ -1,0 +1,18 @@
+.likes_container {
+  @apply relative;
+  @apply flex items-center gap-1;
+  .likes_count {
+    @apply text-lg text-purple;
+  }
+  .likes_info {
+    @apply absolute left-0 top-full hidden flex-col bg-white shadow-sm shadow-darkBlue rounded-lg;
+    a {
+      @apply text-purple px-3 py-2 whitespace-nowrap underline;
+    }
+  }
+  &:hover {
+    .likes_info {
+      @apply flex;
+    }
+  }
+}

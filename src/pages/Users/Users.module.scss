@@ -1,0 +1,27 @@
+.users_page {
+  @apply flex flex-col gap-8 py-5;
+  h1 {
+    @apply text-4xl;
+  }
+  .users_list {
+    @apply flex flex-col gap-4;
+    .users_item {
+      @apply flex items-start gap-3;
+      .user_avatar {
+        @apply w-20 h-20 rounded-full overflow-hidden;
+        img {
+          @apply w-full h-full object-fill
+        }
+      }
+      .user_info {
+        @apply flex flex-col gap-1;
+        .name {
+          @apply text-lg;
+        }
+        .contacts {
+          @apply text-purple
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.input_container {
+  @apply w-full;
+  .input {
+    @apply relative flex flex-col gap-1 w-full;
+    label {
+      @apply text-base;
+    }
+    input {
+      @apply w-full h-11 px-2 py-1 border border-darkBlue rounded-md outline-none text-base focus:border-purple focus:text-purple;
+      &:focus~.icon {
+        svg {
+          path, circle, line {
+            @apply stroke-purple;
+          }
+        }
+      }
+    }
+    .error {
+      @apply text-red border-red focus:border-red focus:text-red;
+      ~.icon {
+        svg {
+          path, circle, line {
+            @apply stroke-red;
+          }
+        }
+      }
+      &:focus~.icon {
+        svg {
+          path, circle, line {
+            @apply stroke-red;
+          }
+        }
+      }
+    }
+    .icon {
+      @apply absolute bottom-1.5 right-1;
+      svg {
+        @apply w-8;
+        path, circle {
+          @apply stroke-darkBlue;
+        }
+      }
+    }
+  }
+  .error_msg {
+    @apply mt-1 text-red text-sm;
+  }
+}

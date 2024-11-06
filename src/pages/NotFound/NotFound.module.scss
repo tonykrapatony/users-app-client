@@ -1,0 +1,12 @@
+.not_found {
+  @apply flex flex-col items-center gap-3 pt-20;
+  h1 {
+    @apply text-3xl leading-10;
+  }
+  p {
+    @apply text-4xl leading-10;
+  }
+  a {
+    @apply text-xl underline
+  }
+}

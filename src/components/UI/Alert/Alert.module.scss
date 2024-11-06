@@ -1,0 +1,12 @@
+.alert {
+  @apply fixed top-28 left-1/2 z-50 -translate-x-1/2 flex items-center justify-center w-3/5 p-4 border-4 rounded-md;
+  &.success {
+    @apply bg-lightGreen border-green;
+  }
+  &.error {
+    @apply bg-lightRed border-red;
+  }
+  span {
+    @apply text-white;
+  }
+} 

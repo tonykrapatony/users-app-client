@@ -1,0 +1,12 @@
+.post_form {
+  @apply flex flex-col gap-5;
+  h2 {
+    @apply text-2xl
+  }
+  form {
+    @apply flex flex-col items-center gap-5 w-full;
+    .input_group {
+      @apply flex flex-col gap-5 w-full;   
+    }
+  }
+}

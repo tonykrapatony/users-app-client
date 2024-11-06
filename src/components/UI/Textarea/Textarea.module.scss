@@ -1,0 +1,26 @@
+.textarea_container {
+  @apply w-full;
+  .textarea {
+    @apply relative flex flex-col gap-1 w-full;
+    label {
+      @apply text-base;
+    }
+    textarea {
+      @apply w-full h-36 px-2 py-1 border border-darkBlue rounded-md outline-none text-base focus:border-purple focus:text-purple;
+      &:focus~.icon {
+        svg {
+          path, circle, line {
+            @apply stroke-purple;
+          }
+        }
+      }
+    }
+    .error {
+      @apply text-red border-red focus:border-red focus:text-red;
+  
+    }
+  }
+  .error_msg {
+    @apply mt-1 text-red text-sm;
+  }
+}

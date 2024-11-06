@@ -1,0 +1,6 @@
+.commetn_field {
+  @apply flex flex-col items-center gap-5 w-full;
+  .input_group {
+    @apply flex flex-col gap-5 w-full;   
+  }
+}

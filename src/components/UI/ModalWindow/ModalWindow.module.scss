@@ -1,0 +1,9 @@
+.modal_container {
+  @apply fixed left-0 top-0 z-40 flex items-center justify-center w-100vw h-100vh py-24 bg-darkBlueTransparent;
+  .modal_body {
+    @apply relative w-full max-w-96 min-h-96 p-4 bg-white rounded-md lg:w-2/5;
+    .close {
+      @apply absolute top-1 right-1 cursor-pointer;
+    }
+  }
+}

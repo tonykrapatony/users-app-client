@@ -1,0 +1,21 @@
+.commetns_container {
+  @apply flex flex-col gap-4 w-full p-2;
+  .title {
+    @apply text-lg;
+  }
+  .commetns_list {
+    @apply flex flex-col gap-3 p-2 border-b border-darkBlue;
+    .comments_item {
+      @apply flex flex-col gap-2;
+      a {
+        @apply flex items-center gap-1 text-sm text-purple
+      }
+      span {
+        @apply text-sm text-purple
+      }
+      .actions_item {
+        @apply cursor-pointer;
+      }
+    }
+  }
+}

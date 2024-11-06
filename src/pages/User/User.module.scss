@@ -1,0 +1,22 @@
+.user_page {
+  @apply flex flex-col gap-8 py-5
+  md:grid md:grid-cols-2 md:grid-rows-3-auto;
+  h1 {
+    @apply col-span-3 text-4xl;
+  }
+  .user_info {
+    @apply flex flex-col gap-5;
+    h2 {
+      @apply text-2xl
+    }
+    .user_info_list {
+      @apply flex flex-col gap-3;
+      img {
+        @apply w-28 h-28 rounded-full overflow-hidden;
+      }
+      p {
+        @apply text-xl;
+      }
+    }
+  }
+}
