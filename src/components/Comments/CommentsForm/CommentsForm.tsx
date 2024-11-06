@@ -5,7 +5,6 @@ import SecondaryButton from '../../UI/SecondaryButton/SecondaryButton'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
-import { useGetUserQuery } from '../../../redux/usersApi'
 import { yupResolver } from '@hookform/resolvers/yup'
 import validationSchema from './validation'
 import { useAddCommentMutation } from '../../../redux/commentsApi'
@@ -20,7 +19,7 @@ type CommentsFormProps = {
 
 const CommentsForm: FC<CommentsFormProps> = ({ postId, refetch }) => {
   const userId = useSelector((state: RootState) => state.auth.userId);
-  const [addComment, {data, isSuccess, isError, error}] = useAddCommentMutation()
+  const [addComment, {isSuccess, isError, error}] = useAddCommentMutation()
   const [showAlert, setShowAlert] =useState<boolean>(false);
 
 
@@ -37,7 +36,7 @@ const CommentsForm: FC<CommentsFormProps> = ({ postId, refetch }) => {
     await addComment({
       text: e.text,
       articleId: postId,
-      userId:userId,
+      userId: userId!,
       date: new Date().toLocaleString()
     })
   }

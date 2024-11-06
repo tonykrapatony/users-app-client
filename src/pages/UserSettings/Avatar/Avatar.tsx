@@ -1,13 +1,15 @@
 import React, { FC, useEffect, useState } from 'react'
-import s from '../UserSettings.module.scss'
-import SecondaryButton from '../../../components/UI/SecondaryButton/SecondaryButton';
 import { useForm } from 'react-hook-form';
 import { useUpdateUserMutation } from '../../../redux/usersApi';
 import avatarGenerator from '../../../helpers/avatarGenerator';
-import Alert from '../../../components/UI/Alert/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validationSchema from './validation';
+import { IUpdateUser } from '../../../types/types';
+import Alert from '../../../components/UI/Alert/Alert';
+import SecondaryButton from '../../../components/UI/SecondaryButton/SecondaryButton';
+import s from '../UserSettings.module.scss'
+
 
 type AvatarProps = {
   userId: string | undefined;
@@ -29,12 +31,12 @@ const Avatar: FC<AvatarProps> = ({ userId, avatar, refetch, refetchUsers }) => {
   });
   const onSubmit = async (e: any) => {
     const file = e.photo[0];
-    let photo = await avatarGenerator(file);
+    const photo = await avatarGenerator(file);
     await updateUser({
-      id: userId,
+      id: userId!,
       body: {
-        photo: photo
-      }
+        photo
+      } as IUpdateUser
     })
   }
 

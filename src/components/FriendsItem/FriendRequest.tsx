@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useAcceptFriendMutation, useRequestFriendMutation } from '../../redux/friendsApi';
+import { useRequestFriendMutation } from '../../redux/friendsApi';
 import Alert from '../UI/Alert/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 

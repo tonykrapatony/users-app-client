@@ -1,14 +1,13 @@
 import React, { FC } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useGetUserQuery } from '../../redux/usersApi';
-import s from './User.module.scss'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import PostList from '../../components/Post/PostList/PostList';
 import UserInfo from './UserInfo';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
+import s from './User.module.scss'
 
-type UserProps = {}
 
-const User: FC<UserProps> = () => {
+const User: FC = () => {
   const location  = useLocation();
   const userId = location.pathname.split('/').pop() || '';
   const {data, isSuccess, isError, error} = useGetUserQuery(userId);

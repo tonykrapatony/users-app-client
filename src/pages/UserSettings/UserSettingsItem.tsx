@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import Input from '../../components/UI/Input/Input';
-import s from './UserSettings.module.scss'
 import { yupResolver } from '@hookform/resolvers/yup';
 import validationSchema from './validation';
 import { useUpdateUserMutation } from '../../redux/usersApi';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { IUpdateUser } from '../../types/types';
 import Alert from '../../components/UI/Alert/Alert';
+import Input from '../../components/UI/Input/Input';
+import s from './UserSettings.module.scss'
 
 type UserSettingsItemProps = {
   userId: string | undefined;
@@ -31,7 +32,7 @@ const UserSettingsItem: FC<UserSettingsItemProps> = ({ userId, label, value, nam
     resolver: yupResolver(validationSchema())
   });
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: IUpdateUser) => {
     await updateUser({ id: userId!, body: e });
     refetchUser();
     refetchUsers();

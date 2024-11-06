@@ -1,16 +1,14 @@
 import React, { FC, useEffect, useState } from 'react'
-import s from './PostForm.module.scss'
-import Input from '../../UI/Input/Input'
-import Textarea from '../../UI/Textarea/Textarea'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import SecondaryButton from '../../UI/SecondaryButton/SecondaryButton'
 import { useAddPostMutation, useGetPostsQuery } from '../../../redux/postsApi'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
-import Alert from '../../UI/Alert/Alert'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { yupResolver } from '@hookform/resolvers/yup'
 import validationSchema from './validation'
+import Alert from '../../UI/Alert/Alert'
+import Input from '../../UI/Input/Input'
+import Textarea from '../../UI/Textarea/Textarea'
+import s from './PostForm.module.scss'
 
 type PostFormProps = {
   userName: string;
@@ -24,7 +22,7 @@ interface IPostForm {
 
 const PostForm: FC<PostFormProps> = ({ userId, userName }) => {
   const [addPost, {isSuccess, isError, error}] = useAddPostMutation();
-  const {refetch: refetchrPosts} = useGetPostsQuery(null);
+  const {refetch: refetchrPosts} = useGetPostsQuery(undefined);
   const {refetch: refetchrUserPosts} = useGetPostsQuery(userId);
   const [showAlert, setShowAlert] =useState<boolean>(false);
   const {

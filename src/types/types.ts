@@ -23,6 +23,7 @@ export interface IUpdateUser {
   lastName?: string;
   email?: string;
   phone?: string;
+  photo?: string;
 }
 
 export interface IChangePass {
@@ -51,7 +52,7 @@ export interface IPost {
 }
 
 export interface IComment {
-  _id: string
+  _id?: string
   text: string;
   articleId: string;
   userId: string;

@@ -4,7 +4,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query'
-import { IChangePass, IUser, IRefreshTokenResponse, IFriendsResp } from '../types/types';
+import { IRefreshTokenResponse, IFriendsResp } from '../types/types';
 import { RootState } from './store';
 import { logout, setUser } from './authSlice';
 

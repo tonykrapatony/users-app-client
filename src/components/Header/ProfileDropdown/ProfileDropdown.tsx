@@ -6,12 +6,11 @@ import { logout } from '../../../redux/authSlice'
 import { useGetFriendsListQuery } from '../../../redux/friendsApi'
 import { RootState } from '../../../redux/store'
 
-type ProfileDropdownProps = {}
 
-const ProfileDropdown: FC<ProfileDropdownProps> = () => {
+const ProfileDropdown: FC = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state: RootState) => state.auth.userId);
-  const {data, isSuccess, isError, error, refetch} = useGetFriendsListQuery(userId!);
+  const {data, isSuccess} = useGetFriendsListQuery(userId!);
   const [showList, setShowList] = useState<boolean>(false)
   const dropdownRef = useRef<HTMLDivElement>(null);
   const showListToggle = () => {

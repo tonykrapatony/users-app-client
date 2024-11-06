@@ -2,8 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { useDeleteUserMutation } from '../../redux/usersApi';
 import SecondaryButton from '../../components/UI/SecondaryButton/SecondaryButton'
 import s from './UserSettings.module.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch } from 'react-redux';
 import Alert from '../../components/UI/Alert/Alert';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { logout } from '../../redux/authSlice';

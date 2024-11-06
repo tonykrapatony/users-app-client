@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
 import { IUser } from '../../types/types'
-import s from './Users.module.scss'
 import { Link } from 'react-router-dom'
 import { useGetFriendsListQuery } from '../../redux/friendsApi'
 import { useSelector } from 'react-redux'
@@ -8,6 +7,7 @@ import { RootState } from '../../redux/store'
 import checkFriends from '../../helpers/checkFriends'
 import FriendRequest from '../../components/FriendsItem/FriendRequest'
 import FriendRemove from '../../components/FriendsItem/FriendRemove'
+import s from './Users.module.scss'
 
 
 type UserItemProps = {
@@ -16,7 +16,7 @@ type UserItemProps = {
 
 const UserItem: FC<UserItemProps> = ({ user }) => {
   const userId = useSelector((state: RootState) => state.auth.userId);
-  const {data, isSuccess, isLoading, isError, error, refetch} = useGetFriendsListQuery(user._id);
+  const {data, isSuccess, refetch} = useGetFriendsListQuery(user._id);
   const [check, setCheck] = useState<boolean>(true);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const UserItem: FC<UserItemProps> = ({ user }) => {
     const acceptedFriends = data?.data?.acceptedFriends || [];
     const requestedFriends = data?.data?.requestedFriends || [];
 
-    let res = checkFriends(acceptedFriends, requestedFriends, userId!);
+    const res = checkFriends(acceptedFriends, requestedFriends, userId!);
     setCheck(res!);
   }, [data, isSuccess, userId])
 

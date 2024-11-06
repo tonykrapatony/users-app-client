@@ -4,9 +4,8 @@ import { RootState } from '../../redux/store'
 import s from './Friends.module.scss'
 import FriendsList from '../../components/Friends/FriendsList'
 
-type FriendsProps = {}
 
-const Friends: FC<FriendsProps> = () => {
+const Friends: FC = () => {
   const userId = useSelector((state: RootState) => state.auth.userId);
 
   return (

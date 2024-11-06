@@ -8,11 +8,10 @@ import renderError from '../../helpers/renderError'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import s from './Profile.module.scss'
 
-type ProfileProps = {}
 
-const Profile: FC<ProfileProps> = () => {
+const Profile: FC = () => {
   const userId = useSelector((state: RootState) => state.auth.userId);
-  const {data, isLoading, isSuccess, isError, error} = useGetUserQuery(userId);
+  const {data, isLoading, isSuccess, isError, error} = useGetUserQuery(userId!);
 
   if (isLoading) {
     return <Spinner />
@@ -24,7 +23,7 @@ const Profile: FC<ProfileProps> = () => {
       {isSuccess && <>
         <h1>Welcome {data.user.firstName} {data.user.lastName}</h1>
         <PostList userId={userId} all={false}/>
-        <PostForm userId={userId} userName={`${data.user.firstName} ${data.user.lastName}`}/>
+        <PostForm userId={userId!} userName={`${data.user.firstName} ${data.user.lastName}`}/>
       </>}
     </div>
   )

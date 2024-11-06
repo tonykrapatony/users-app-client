@@ -4,21 +4,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import validationSchema from './validation'
 import { useUserRegistrationMutation } from '../../../redux/authApi'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
-import { SerializedError } from '@reduxjs/toolkit/react'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../../redux/authSlice'
-import { IRegistration, IUser } from '../../../types/types'
+import { IRegistration } from '../../../types/types'
 import PrimaryButton from '../../UI/PrimaryButton/PrimaryButton'
 import Input from '../../UI/Input/Input'
 import s from './UserRegistration.module.scss'
-import Alert from '../../UI/Alert/Alert'
 
 
 type UserRegistrationProps = {
   setForm: (formType: string) => void;
   setShowModal: (showModal: boolean) => void;
 }
-
 
 const UserRegistration: FC<UserRegistrationProps> = ({ setForm, setShowModal }) => {
   const [userRegistration, {data, isSuccess, isError, error}] = useUserRegistrationMutation();
@@ -62,7 +59,7 @@ const UserRegistration: FC<UserRegistrationProps> = ({ setForm, setShowModal }) 
         clearTimeout(timer);
       }
     }
-  }, [isSuccess, isError])
+  }, [isSuccess, isError, dispatch, setShowModal, setShowAlert, reset])
 
 
   return (

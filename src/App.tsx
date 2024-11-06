@@ -3,7 +3,7 @@ import MainContainer from "./components/MainContainer/MainContainer";
 import Home from "./pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import NotFound from "./pages/NotFound/NotFound";
 import Users from "./pages/Users/Users";
 import Profile from "./pages/Profile/Profile";
@@ -13,16 +13,14 @@ import User from "./pages/User/User";
 import checkTokenExpiration from "./helpers/checkTokenExp";
 import { useRefreshTokenMutation } from "./redux/authApi";
 import { checkUser } from "./redux/authSlice";
-import Spinner from "./components/UI/Spinner/Spinner";
 import AuthComponent from "./helpers/AuthComponent";
-import Messages from "./pages/Messages/Messages";
 import Friends from "./pages/Friends/Friends";
 
 
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
-  const [refreshToken, { data, isSuccess, isError, error }] = useRefreshTokenMutation();
+  const [refreshToken, { data, isSuccess, isError }] = useRefreshTokenMutation();
 
   useEffect(() => {
     dispatch(checkUser());
@@ -31,7 +29,6 @@ function App() {
       const check = checkTokenExpiration(auth.token);
       if (!check) {
         refreshToken({ refreshToken: auth.refreshToken! });
-      } else {
       }
     }
   }, [auth])
@@ -93,11 +90,6 @@ function App() {
           <Route path="posts" element={
             <AuthComponent token={auth.token}>
               <Posts />
-            </AuthComponent>}
-          />
-          <Route path="messages" element={
-            <AuthComponent token={auth.token}>
-              <Messages />
             </AuthComponent>}
           />
           <Route path="*" element={<NotFound />} />

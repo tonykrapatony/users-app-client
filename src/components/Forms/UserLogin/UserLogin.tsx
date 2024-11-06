@@ -4,17 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import validationSchema from './validation'
 import { useLoginUserMutation } from '../../../redux/authApi'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
-import { SerializedError } from '@reduxjs/toolkit/react'
 import { ILogin } from '../../../types/types'
 import { setUser, toggleRememberMe } from '../../../redux/authSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
-
+import { useDispatch } from 'react-redux'
 import CheckBox from '../../UI/CheckBox/CheckBox'
 import Input from '../../UI/Input/Input'
 import PrimaryButton from '../../UI/PrimaryButton/PrimaryButton'
 import s from './UserLogin.module.scss'
-import Alert from '../../UI/Alert/Alert'
 
 
 type UserLoginProps = {
@@ -25,7 +21,6 @@ type UserLoginProps = {
 
 const UserLogin: FC<UserLoginProps> = ({ setForm, setShowModal }) => {
   const dispatch = useDispatch();
-  const rem = useSelector((state: RootState) => state.auth.rememberMe);
   const [loginUser, {isSuccess, data, isError, error}] = useLoginUserMutation();
   const [showAlert, setShowAlert] =useState<boolean>(false);
   const {

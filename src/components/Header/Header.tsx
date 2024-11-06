@@ -1,4 +1,4 @@
-import React, { Profiler, useState } from 'react'
+import React, { useState } from 'react'
 import s from './Header.module.scss'
 import { Link } from 'react-router-dom'
 import PrimaryButton from '../UI/PrimaryButton/PrimaryButton'
@@ -11,7 +11,7 @@ import ProfileDropdown from './ProfileDropdown/ProfileDropdown'
 
 
 export default function Header() {
-  const [showModal, setShowModal] = useState<Boolean>(false);
+  const [showModal, setShowModal] = useState<BaseAudioContextoolean>(false);
   const [renderForm, setRenderForm] = useState<string>('');
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 

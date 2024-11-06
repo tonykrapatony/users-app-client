@@ -1,18 +1,16 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import s from './UserSettings.module.scss'
 import { useGetUserQuery, useGetUsersQuery } from '../../redux/usersApi';
 import { RootState } from '../../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import renderError from '../../helpers/renderError';
-import { useForm } from 'react-hook-form';
 import UserSettingsItem from './UserSettingsItem';
 import DeleteAccount from './DeleteAccount';
 import ChangePassword from './ChangePassword/ChangePassword';
 import Avatar from './Avatar/Avatar';
 
-type UserSettingsProps = {}
 
-const UserSettings: FC<UserSettingsProps> = () => {
+const UserSettings: FC = () => {
   const userId = useSelector((state: RootState) => state.auth.userId);
   const {data, isLoading, isSuccess, isError, error, refetch: refetchUser} = useGetUserQuery(userId!);
   const {refetch: refetchUsers} = useGetUsersQuery(undefined);

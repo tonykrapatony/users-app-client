@@ -1,9 +1,5 @@
 const checkFriends = (accepted: string[], requests: string[], id: string) => {
-  if (accepted.includes(id) || requests.includes(id)) {
-    return true
-  } else {
-    false
-  }
+  return accepted.includes(id) || requests.includes(id);
 }
 
 export default checkFriends

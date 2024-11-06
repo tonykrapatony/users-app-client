@@ -1,15 +1,13 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useGetUsersQuery } from '../../redux/usersApi'
-import List from '../../components/List/List';
 import { IUser } from '../../types/types';
-import UserItem from './UsersItem';
-import s from './Users.module.scss'
-import Spinner from '../../components/UI/Spinner/Spinner';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
+import List from '../../components/List/List';
+import UserItem from './UsersItem';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import s from './Users.module.scss'
 
-type UsersProps = {}
-
-const Users: FC<UsersProps> = () => {
+const Users: FC = () => {
   const {data, isSuccess, isLoading, isError, error, refetch} = useGetUsersQuery(undefined);
 
   useEffect(() => {
