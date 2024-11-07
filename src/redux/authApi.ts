@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IAuth, ILogin, IRegistration } from '../types/types';
+import { IAuth, ILogin, IRegistration, IUpdateUser } from '../types/types';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -21,6 +21,13 @@ export const authApi = createApi({
         body
       })
     }),
+    forgotPassword: build.mutation<{status: number, message: string}, IUpdateUser>({
+      query: (body) => ({
+        url: 'auth/forgot',
+        method: 'POST',
+        body
+      })
+    }),
     refreshToken: build.mutation<IAuth, {refreshToken: string}>({
       query: (body) => {
         return {
@@ -34,4 +41,4 @@ export const authApi = createApi({
 })
 
 
-export const { useUserRegistrationMutation, useLoginUserMutation, useRefreshTokenMutation } = authApi;
+export const { useUserRegistrationMutation, useLoginUserMutation, useForgotPasswordMutation, useRefreshTokenMutation } = authApi;

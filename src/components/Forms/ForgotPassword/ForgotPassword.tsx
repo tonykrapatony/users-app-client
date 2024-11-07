@@ -2,38 +2,32 @@ import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import validationSchema from './validation'
-import { useLoginUserMutation } from '../../../redux/authApi'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
-import { ILogin } from '../../../types/types'
-import { setUser, toggleRememberMe } from '../../../redux/authSlice'
-import { useDispatch } from 'react-redux'
-import CheckBox from '../../UI/CheckBox/CheckBox'
+import { IUpdateUser } from '../../../types/types'
 import Input from '../../UI/Input/Input'
 import PrimaryButton from '../../UI/PrimaryButton/PrimaryButton'
-import s from './UserLogin.module.scss'
+import s from './ForgotPassword.module.scss'
+import { useForgotPasswordMutation } from '../../../redux/authApi'
 
 
-type UserLoginProps = {
+type ForgotPasswordProps = {
   setForm: (formType: string) => void;
-  setShowModal: (showModal: boolean) => void;
 }
 
 
-const UserLogin: FC<UserLoginProps> = ({ setForm, setShowModal }) => {
-  const dispatch = useDispatch();
-  const [loginUser, {isSuccess, data, isError, error}] = useLoginUserMutation();
+const ForgotPassword: FC<ForgotPasswordProps> = ({ setForm }) => {
   const [showAlert, setShowAlert] =useState<boolean>(false);
+  const [forgotPassword, {data, isSuccess, isError, error}] = useForgotPasswordMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
   } = useForm({
     resolver: yupResolver(validationSchema()),
   });
 
-  const onSubmit = async (data: ILogin) => {
-    await loginUser(data);
+  const onSubmit = async (data: IUpdateUser) => {
+    await forgotPassword(data);
   };
 
   useEffect(() => {
@@ -48,13 +42,9 @@ const UserLogin: FC<UserLoginProps> = ({ setForm, setShowModal }) => {
       }
     }
     if (isSuccess) {
-      const { token, userId, refreshToken } = data;
-      dispatch(setUser({ token, refreshToken, userId }));
-      reset();
-
       const timer = setTimeout(() => {
-        setShowModal(false);
         setShowAlert(false);
+        setForm('login');
       }, 3000);
 
       return () => {
@@ -63,15 +53,13 @@ const UserLogin: FC<UserLoginProps> = ({ setForm, setShowModal }) => {
     }
   }, [isSuccess, isError])
 
-  const rememberMeHandler = () => {
-    dispatch(toggleRememberMe());
-  }
 
   return (
     <div className={s.login_form}>
-      <p className={s.title}>User Login</p>
+      <p className={s.title}>Forgot password</p>
+      <p>Enter your email and we will send you a new one.</p>
       <p className={`w-full text-center ${isSuccess ? 'text-green' : isError ? 'text-red' : ''}`}>
-        {showAlert && isSuccess && 'Login is successful'}
+        {showAlert && isSuccess && data.message}
         {showAlert && isError && 'data' in error && (
             typeof (error as FetchBaseQueryError).data === 'object' && (error as FetchBaseQueryError).data !== null
               ? ((error as FetchBaseQueryError).data as { message?: string }).message || 'Something went wrong'
@@ -87,25 +75,12 @@ const UserLogin: FC<UserLoginProps> = ({ setForm, setShowModal }) => {
             register={register}
             error={errors.email?.message}
           />
-          <Input
-            label='Password'
-            name='password'
-            type='password'
-            register={register}
-            error={errors.password?.message}
-          />
-          <CheckBox 
-            label='Remember me'
-            name='remember'
-            onChange={rememberMeHandler}
-          />
         </div>
         <PrimaryButton text='Submit' type='submit'/>
-        <p className={s.switch}>Don't have an account? <span onClick={() => setForm('register')}>Register</span></p>
-        <p className={s.switch}><span onClick={() => setForm('forgot')}>Forgot password?</span></p>
+        <p className={s.switch}>Remember your password? <span onClick={() => setForm('login')}>Login</span></p>
       </form>
     </div>
   )
 }
 
-export default UserLogin
+export default ForgotPassword
